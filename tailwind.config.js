@@ -41,6 +41,19 @@ export default {
         'mesh-drift': 'mesh-drift 20s ease-in-out infinite alternate',
         'spin-slow': 'spin 20s linear infinite',
         'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
+        'float-slow': 'float-slow 6s ease-in-out infinite',
+        'float-slower': 'float-slow 8s ease-in-out infinite',
+        'gradient-pan': 'gradient-pan 8s ease infinite',
+      },
+      keyframes: {
+        'float-slow': {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-12px)' },
+        },
+        'gradient-pan': {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
       },
       keyframes: {
         marquee: {
