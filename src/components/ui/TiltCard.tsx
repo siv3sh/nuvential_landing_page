@@ -1,5 +1,6 @@
 import { useRef, useState, type ReactNode, type MouseEvent } from 'react';
 import { motion } from 'framer-motion';
+import { useCanHover } from '@/hooks/useCanHover';
 
 interface TiltCardProps {
   children: ReactNode;
@@ -17,10 +18,11 @@ export function TiltCard({
   const ref = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0 });
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50, opacity: 0 });
+  const canHover = useCanHover();
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || !canHover) return;
     const rect = el.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width;
     const py = (e.clientY - rect.top) / rect.height;
@@ -29,7 +31,7 @@ export function TiltCard({
     const rotateX = -(py - 0.5) * maxTilt * 2;
 
     setTransform({ rotateX, rotateY });
-    setGlarePos({ x: px * 100, y: py * 100, opacity: 0.15 });
+    setGlarePos({ x: px * 100, y: py * 100, opacity: 1 });
   };
 
   const handleMouseLeave = () => {
@@ -52,7 +54,7 @@ export function TiltCard({
         <div
           className="pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-300"
           style={{
-            background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255,255,255,0.12), transparent 50%)`,
+            background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(79,70,229,0.07), transparent 55%)`,
             opacity: glarePos.opacity,
           }}
         />

@@ -1,230 +1,333 @@
-interface ProjectMockupProps {
-  type: 'finance' | 'leadscore' | 'store';
-  accent: 'primary' | 'secondary' | 'violet';
-}
+import { type ReactNode } from 'react';
+import {
+  ArrowDown,
+  Lock,
+  MessageSquareText,
+  Phone,
+  ShieldCheck,
+  ShoppingBag,
+  Truck,
+  RotateCcw,
+} from 'lucide-react';
+import type { ProjectKind } from '@/data/content';
 
-const accentColor = {
-  primary: '#4F7CFF',
-  secondary: '#22D3EE',
-  violet: '#A78BFA',
-};
-
-function BrowserFrame({ children, url }: { children: React.ReactNode; url: string }) {
+function BrowserFrame({ children, url }: { children: ReactNode; url: string }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-border-subtle bg-bg-base">
-      {/* Browser bar */}
-      <div className="flex items-center gap-2 border-b border-border-subtle bg-bg-surface px-4 py-3">
+    <div className="overflow-hidden rounded-2xl border border-border-subtle bg-white shadow-lifted">
+      <div className="flex items-center gap-3 border-b border-border-subtle bg-bg-elevated/70 px-4 py-2.5">
         <div className="flex gap-1.5">
-          <div className="h-3 w-3 rounded-full bg-red-400/60" />
-          <div className="h-3 w-3 rounded-full bg-yellow-400/60" />
-          <div className="h-3 w-3 rounded-full bg-green-400/60" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
         </div>
-        <div className="ml-3 flex-1 rounded-md bg-bg-base px-3 py-1 text-xs text-text-muted">
+        <div className="flex flex-1 items-center justify-center gap-1.5 rounded-md bg-white px-3 py-1 text-[11px] font-medium text-text-muted ring-1 ring-border-subtle">
+          <Lock size={10} />
           {url}
         </div>
+        <span className="w-10" />
       </div>
-      {/* Content */}
-      <div className="p-4">{children}</div>
+      <div className="p-3 sm:p-5">{children}</div>
     </div>
   );
 }
 
-function FinanceMockup() {
+const TALLY_ROWS = [
+  { bank: 'HDFC', merchant: 'Swiggy', category: 'Food', amount: '−₹428', credit: false },
+  { bank: 'ICICI', merchant: 'UPI · rent', category: 'Housing', amount: '−₹18,500', credit: false },
+  { bank: 'Federal', merchant: 'Salary · ACME', category: 'Income', amount: '+₹85,000', credit: true },
+  { bank: 'SBI', merchant: 'HPCL', category: 'Transport', amount: '−₹2,140', credit: false },
+];
+
+const TALLY_MONTHS = [
+  { m: 'Apr', debit: 62, credit: 88 },
+  { m: 'May', debit: 70, credit: 88 },
+  { m: 'Jun', debit: 55, credit: 92 },
+  { m: 'Jul', debit: 78, credit: 88 },
+  { m: 'Aug', debit: 60, credit: 95 },
+  { m: 'Sep', debit: 48, credit: 100 },
+];
+
+function TallyMockup() {
   return (
-    <BrowserFrame url="moneytrack.nuvential.com">
-      <div className="space-y-4">
-        {/* Header */}
+    <BrowserFrame url="tally.nuential.com/dashboard">
+      <div className="space-y-3.5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-brand-primary/20" />
-            <div className="h-3 w-24 rounded bg-white/10" />
+          <div>
+            <p className="text-[11px] font-medium text-text-muted">September 2026</p>
+            <p className="font-display text-base font-semibold text-text-heading">Dashboard</p>
           </div>
-          <div className="h-3 w-16 rounded bg-white/5" />
+          <span className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            SMS sync on
+          </span>
         </div>
 
-        {/* Balance cards */}
-        <div className="grid grid-cols-3 gap-3">
-          {['Income', 'Expenses', 'Balance'].map((label, i) => (
-            <div key={label} className="rounded-lg border border-border-subtle bg-bg-surface p-3">
-              <div className="mb-2 h-2 w-12 rounded bg-white/10" />
-              <div
-                className="h-5 w-16 rounded"
-                style={{
-                  background:
-                    i === 0
-                      ? 'linear-gradient(90deg, rgba(79,124,255,0.6), rgba(79,124,255,0.3))'
-                      : i === 1
-                        ? 'linear-gradient(90deg, rgba(239,68,68,0.5), rgba(239,68,68,0.2))'
-                        : 'linear-gradient(90deg, rgba(34,211,238,0.5), rgba(34,211,238,0.2))',
-                }}
-              />
+        <div className="grid grid-cols-3 gap-2.5">
+          {[
+            { label: 'Income', value: '₹85,000', tone: 'text-emerald-700' },
+            { label: 'Spent', value: '₹21,068', tone: 'text-rose-600' },
+            { label: 'Net', value: '₹63,932', tone: 'text-text-heading' },
+          ].map((card) => (
+            <div key={card.label} className="rounded-xl border border-border-subtle bg-bg-base p-2.5">
+              <p className="text-[10px] font-medium uppercase tracking-wider text-text-muted">
+                {card.label}
+              </p>
+              <p className={`mt-1 font-display text-sm font-bold sm:text-base ${card.tone}`}>
+                {card.value}
+              </p>
             </div>
           ))}
         </div>
 
-        {/* Chart */}
-        <div className="rounded-lg border border-border-subtle bg-bg-surface p-4">
-          <div className="mb-3 h-2 w-20 rounded bg-white/10" />
-          <div className="flex h-24 items-end gap-2">
-            {[40, 65, 50, 80, 55, 90, 70, 85, 60, 95, 75, 100].map((h, i) => (
+        <div className="rounded-xl border border-emerald-100 bg-emerald-50/60 p-3">
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-700">
+            Incoming bank SMS · HDFC
+          </p>
+          <p className="mt-1.5 rounded-lg bg-white px-3 py-2 font-mono text-[10.5px] leading-relaxed text-text-body ring-1 ring-emerald-100">
+            Spent Rs.428.00 on SWIGGY via UPI on 23-Sep-26. A/c XX1234.
+          </p>
+          <div className="my-1.5 flex justify-center text-emerald-600">
+            <ArrowDown size={14} />
+          </div>
+          <div className="flex items-center justify-between rounded-lg bg-white px-3 py-2 ring-1 ring-emerald-100">
+            <span className="text-xs font-semibold text-text-heading">Swiggy</span>
+            <span className="rounded-full bg-orange-50 px-2 py-0.5 text-[10px] font-medium text-orange-700">
+              Food
+            </span>
+            <span className="font-display text-xs font-bold text-rose-600">−₹428</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-5 sm:gap-3">
+          <div className="space-y-1.5 sm:col-span-3">
+            {TALLY_ROWS.map((row) => (
               <div
-                key={i}
-                className="flex-1 rounded-t"
-                style={{
-                  height: `${h}%`,
-                  background: `linear-gradient(180deg, ${accentColor.primary}80, ${accentColor.primary}20)`,
-                }}
-              />
+                key={row.merchant}
+                className="flex items-center gap-2 rounded-lg border border-border-subtle px-2.5 py-1.5"
+              >
+                <span className="w-11 shrink-0 rounded bg-bg-elevated px-1 py-0.5 text-center text-[9px] font-bold text-text-body">
+                  {row.bank}
+                </span>
+                <span className="flex-1 truncate text-[11px] font-medium text-text-heading">
+                  {row.merchant}
+                </span>
+                <span
+                  className={`font-display text-[11px] font-bold ${
+                    row.credit ? 'text-emerald-700' : 'text-rose-600'
+                  }`}
+                >
+                  {row.amount}
+                </span>
+              </div>
             ))}
           </div>
-        </div>
-
-        {/* Transaction list */}
-        <div className="space-y-2">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="flex items-center gap-3 rounded-lg border border-border-subtle bg-bg-surface p-2.5">
-              <div className="h-7 w-7 rounded-full bg-white/5" />
-              <div className="flex-1 space-y-1.5">
-                <div className="h-2 w-20 rounded bg-white/10" />
-                <div className="h-1.5 w-12 rounded bg-white/5" />
-              </div>
-              <div className="h-3 w-12 rounded bg-brand-primary/20" />
+          <div className="flex flex-col rounded-lg border border-border-subtle p-2.5 sm:col-span-2">
+            <p className="text-[10px] font-medium text-text-muted">Monthly flow</p>
+            <div className="mt-2 flex flex-1 items-end gap-1.5">
+              {TALLY_MONTHS.map((bar) => (
+                <div key={bar.m} className="flex flex-1 flex-col items-center gap-1">
+                  <div className="flex h-12 w-full items-end gap-[2px] sm:h-16">
+                    <div
+                      className="flex-1 rounded-t-sm bg-emerald-400"
+                      style={{ height: `${bar.credit}%` }}
+                    />
+                    <div
+                      className="flex-1 rounded-t-sm bg-rose-300"
+                      style={{ height: `${bar.debit}%` }}
+                    />
+                  </div>
+                  <span className="text-[8px] text-text-muted">{bar.m}</span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </BrowserFrame>
   );
 }
+
+const LEADS = [
+  { name: 'Aarav Sharma', city: 'Mumbai', source: 'Referral', score: 96, priority: 'High' },
+  { name: 'Diya Nair', city: 'Bengaluru', source: 'Referral', score: 94, priority: 'High' },
+  { name: 'Meera Patel', city: 'Pune', source: 'Referral', score: 86, priority: 'High' },
+  { name: 'Saanvi Gupta', city: 'Ahmedabad', source: 'Google Search', score: 82, priority: 'High' },
+  { name: 'Reyansh Menon', city: 'Mumbai', source: 'Google Search', score: 80, priority: 'Medium' },
+  { name: 'Advait Deshmukh', city: 'Delhi', source: 'Walk-in', score: 76, priority: 'Medium' },
+  { name: 'Shaurya Pillai', city: 'Kochi', source: 'Facebook Ads', score: 68, priority: 'Medium' },
+] as const;
 
 function LeadScoreMockup() {
   return (
-    <BrowserFrame url="leadscore.nuvential.com">
-      <div className="space-y-4">
-        {/* Header */}
-        <div className="flex items-center justify-between">
+    <BrowserFrame url="leadscore.nuential.com/dashboard">
+      <div className="space-y-3">
+        <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-brand-secondary/20" />
-            <div className="h-3 w-20 rounded bg-white/10" />
-          </div>
-          <div className="rounded-full bg-brand-secondary/10 px-3 py-1 text-xs text-brand-secondary">
-            AI Scoring Active
-          </div>
-        </div>
-
-        {/* Score gauge */}
-        <div className="flex items-center gap-4 rounded-lg border border-border-subtle bg-bg-surface p-4">
-          <div className="relative flex h-20 w-20 items-center justify-center">
-            <svg className="h-20 w-20 -rotate-90" viewBox="0 0 80 80">
-              <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="6" />
-              <circle
-                cx="40"
-                cy="40"
-                r="34"
-                fill="none"
-                stroke={accentColor.secondary}
-                strokeWidth="6"
-                strokeDasharray="160 214"
-                strokeLinecap="round"
-              />
-            </svg>
-            <span className="absolute font-display text-lg font-bold text-text-heading">87</span>
-          </div>
-          <div className="flex-1 space-y-2">
-            <div className="h-2 w-24 rounded bg-white/10" />
-            <div className="h-1.5 w-32 rounded bg-white/5" />
-            <div className="flex gap-1.5">
-              <div className="h-2 w-8 rounded bg-brand-secondary/40" />
-              <div className="h-2 w-8 rounded bg-brand-secondary/30" />
-              <div className="h-2 w-8 rounded bg-brand-secondary/20" />
-            </div>
+            <span className="relative inline-flex h-4 w-7 items-center rounded-full bg-product-leadscore">
+              <span className="absolute right-0.5 h-3 w-3 rounded-full bg-white" />
+            </span>
+            <p className="text-[11px] font-medium text-text-body">
+              Highest scores first — call or WhatsApp these today.
+            </p>
           </div>
         </div>
 
-        {/* Lead list with scores */}
-        <div className="space-y-2">
-          {[
-            { score: 94, w: 'w-[94%]', color: 'bg-brand-secondary' },
-            { score: 82, w: 'w-[82%]', color: 'bg-brand-secondary/70' },
-            { score: 67, w: 'w-[67%]', color: 'bg-brand-secondary/50' },
-            { score: 41, w: 'w-[41%]', color: 'bg-brand-secondary/30' },
-          ].map((lead, i) => (
-            <div key={i} className="flex items-center gap-3 rounded-lg border border-border-subtle bg-bg-surface p-2.5">
-              <div className="h-7 w-7 rounded-full bg-white/5" />
-              <div className="flex-1 space-y-1">
-                <div className="h-2 w-24 rounded bg-white/10" />
-                <div className={`h-1.5 rounded ${lead.w} ${lead.color}`} />
-              </div>
-              <span className="font-display text-sm font-bold text-text-heading">{lead.score}</span>
-            </div>
+        <div className="flex flex-wrap gap-1.5">
+          {['All dates', 'All priorities', 'All sources', 'Follow-up'].map((f) => (
+            <span
+              key={f}
+              className="rounded-md border border-border-subtle px-2 py-1 text-[10px] font-medium text-text-body"
+            >
+              {f}
+            </span>
           ))}
         </div>
+
+        <div className="overflow-hidden rounded-xl border border-border-subtle">
+          <div className="grid grid-cols-[1.5fr_1fr_auto] gap-2 border-b border-border-subtle bg-bg-base px-3 py-2 text-[10px] font-semibold uppercase tracking-wider text-text-muted sm:grid-cols-[1.6fr_1fr_0.8fr_auto]">
+            <span>Lead</span>
+            <span>Score</span>
+            <span>Priority</span>
+            <span className="hidden sm:block">Outreach</span>
+          </div>
+          {LEADS.map((lead) => {
+            const high = lead.priority === 'High';
+            return (
+              <div
+                key={lead.name}
+                className="grid grid-cols-[1.5fr_1fr_auto] items-center gap-2 border-b border-border-subtle px-3 py-2 last:border-b-0 sm:grid-cols-[1.6fr_1fr_0.8fr_auto]"
+              >
+                <div className="min-w-0">
+                  <p className="truncate text-[11px] font-semibold text-text-heading">{lead.name}</p>
+                  <p className="truncate text-[9.5px] text-text-muted">
+                    {lead.source} · {lead.city}
+                  </p>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-5 font-display text-[11px] font-bold text-text-heading">
+                    {lead.score}
+                  </span>
+                  <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-bg-elevated">
+                    <span
+                      className={`block h-full rounded-full ${high ? 'bg-emerald-500' : 'bg-amber-400'}`}
+                      style={{ width: `${lead.score}%` }}
+                    />
+                  </span>
+                </div>
+                <span
+                  className={`w-fit rounded-full border px-2 py-0.5 text-[9.5px] font-semibold ${
+                    high
+                      ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
+                      : 'border-amber-200 bg-amber-50 text-amber-700'
+                  }`}
+                >
+                  {lead.priority}
+                </span>
+                <span className="hidden gap-1.5 text-text-muted sm:flex">
+                  <MessageSquareText size={13} className="text-emerald-600" />
+                  <Phone size={13} />
+                </span>
+              </div>
+            );
+          })}
+        </div>
+
+        <p className="text-center text-[10px] text-text-muted">
+          Ranked by a model trained on your own won / lost history
+        </p>
       </div>
     </BrowserFrame>
   );
 }
+
+const STORE_PRODUCTS = [
+  { name: 'Tripod Pleated Table Lamp', price: '₹547', category: 'Lighting', image: '/work/store/tripod-lamp.webp' },
+  { name: 'Boho Wall Art Set of 3', price: '₹273', category: 'Wall', image: '/work/store/boho-wall-art.webp' },
+  { name: 'Chai Biscuit Scented Candle', price: '₹156', category: 'Decor', image: '/work/store/chai-candle.webp' },
+];
 
 function StoreMockup() {
   return (
-    <BrowserFrame url="store.nuvential.com">
-      <div className="space-y-4">
-        {/* Header */}
+    <BrowserFrame url="store.nuential.com">
+      <div className="space-y-3.5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-brand-violet/20" />
-            <div className="h-3 w-28 rounded bg-white/10" />
+          <span className="font-display text-base font-bold tracking-tight text-text-heading">
+            Nuential
+          </span>
+          <div className="hidden gap-3 text-[11px] font-medium text-text-body sm:flex">
+            <span>Wall</span>
+            <span>Lighting</span>
+            <span>Decor</span>
+            <span>Soft & floor</span>
           </div>
-          <div className="flex gap-2">
-            <div className="h-3 w-8 rounded bg-white/5" />
-            <div className="h-3 w-8 rounded bg-white/5" />
+          <ShoppingBag size={15} className="text-text-heading" />
+        </div>
+
+        <div className="relative h-36 overflow-hidden rounded-xl sm:h-40">
+          <img
+            src="/work/store/banner.webp"
+            alt="Bedroom styled with pastel wall art and string lights"
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+          <div className="absolute bottom-3 left-4">
+            <p className="font-display text-lg font-semibold text-white">A room you want to stay in</p>
+            <span className="mt-1.5 inline-block bg-white px-3 py-1 text-[10px] font-semibold text-text-heading">
+              Explore the collection
+            </span>
           </div>
         </div>
 
-        {/* Hero banner */}
-        <div
-          className="flex items-center justify-between rounded-lg p-4"
-          style={{
-            background: 'linear-gradient(135deg, rgba(167,139,250,0.15), rgba(79,124,255,0.1))',
-          }}
-        >
-          <div className="space-y-2">
-            <div className="h-3 w-20 rounded bg-white/15" />
-            <div className="h-2 w-28 rounded bg-white/10" />
-            <div className="h-6 w-16 rounded bg-brand-violet/40" />
-          </div>
-          <div className="h-12 w-12 rounded-full bg-brand-violet/20" />
-        </div>
-
-        {/* Product grid */}
-        <div className="grid grid-cols-3 gap-3">
-          {[
-            { color: 'rgba(79,124,255,0.2)', icon: 'bg-brand-primary/30' },
-            { color: 'rgba(34,211,238,0.2)', icon: 'bg-brand-secondary/30' },
-            { color: 'rgba(167,139,250,0.2)', icon: 'bg-brand-violet/30' },
-            { color: 'rgba(34,211,238,0.2)', icon: 'bg-brand-secondary/30' },
-            { color: 'rgba(167,139,250,0.2)', icon: 'bg-brand-violet/30' },
-            { color: 'rgba(79,124,255,0.2)', icon: 'bg-brand-primary/30' },
-          ].map((product, i) => (
-            <div key={i} className="rounded-lg border border-border-subtle bg-bg-surface p-3">
-              <div
-                className="mb-3 flex h-16 items-center justify-center rounded-md"
-                style={{ background: product.color }}
-              >
-                <div className={`h-6 w-6 rounded ${product.icon}`} />
+        <div className="grid grid-cols-3 gap-2.5">
+          {STORE_PRODUCTS.map((product) => (
+            <div key={product.name} className="group/product">
+              <div className="aspect-square overflow-hidden rounded-lg bg-bg-elevated">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover/product:scale-105"
+                  loading="lazy"
+                />
               </div>
-              <div className="mb-1.5 h-2 w-16 rounded bg-white/10" />
-              <div className="h-2 w-10 rounded bg-white/5" />
+              <p className="mt-1.5 text-[9.5px] font-medium uppercase tracking-wider text-product-store">
+                {product.category}
+              </p>
+              <p className="line-clamp-2 text-[11px] font-semibold leading-snug text-text-heading">
+                {product.name}
+              </p>
+              <p className="text-[11px] font-bold text-text-body">{product.price}</p>
             </div>
           ))}
+        </div>
+
+        <div className="grid grid-cols-3 divide-x divide-border-subtle rounded-lg border border-border-subtle bg-bg-base text-[9.5px] font-medium text-text-body">
+          <span className="flex flex-col items-center justify-center gap-1 px-1 py-2 text-center sm:flex-row">
+            <Truck size={11} className="shrink-0" /> Pan-India delivery
+          </span>
+          <span className="flex flex-col items-center justify-center gap-1 px-1 py-2 text-center sm:flex-row">
+            <RotateCcw size={11} className="shrink-0" /> 7-day returns
+          </span>
+          <span className="flex flex-col items-center justify-center gap-1 px-1 py-2 text-center sm:flex-row">
+            <ShieldCheck size={11} className="shrink-0" /> UPI & cards
+          </span>
         </div>
       </div>
     </BrowserFrame>
   );
 }
 
-export function ProjectMockup({ type, accent }: ProjectMockupProps) {
-  void accent;
-  if (type === 'finance') return <FinanceMockup />;
-  if (type === 'leadscore') return <LeadScoreMockup />;
-  return <StoreMockup />;
+export function ProjectMockup({ kind }: { kind: ProjectKind }) {
+  switch (kind) {
+    case 'tally':
+      return <TallyMockup />;
+    case 'leadscore':
+      return <LeadScoreMockup />;
+    case 'store':
+      return <StoreMockup />;
+    default: {
+      const unreachable: never = kind;
+      return unreachable;
+    }
+  }
 }

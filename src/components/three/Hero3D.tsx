@@ -24,15 +24,15 @@ function Orb() {
         {/* Inner glowing core */}
         <Icosahedron args={[1.2, 4]}>
           <MeshDistortMaterial
-            color="#4F7CFF"
-            emissive="#4F7CFF"
-            emissiveIntensity={0.3}
-            roughness={0.2}
-            metalness={0.8}
+            color="#6366F1"
+            emissive="#4F46E5"
+            emissiveIntensity={0.25}
+            roughness={0.25}
+            metalness={0.35}
             distort={0.3}
             speed={2}
             transparent
-            opacity={0.9}
+            opacity={0.95}
           />
         </Icosahedron>
 
@@ -40,8 +40,8 @@ function Orb() {
         <Icosahedron args={[1.6, 1]}>
           <Wireframe
             fillOpacity={0}
-            stroke="#22D3EE"
-            strokeOpacity={0.3}
+            stroke="#6366F1"
+            strokeOpacity={0.55}
             thickness={0.5}
           />
         </Icosahedron>
@@ -49,16 +49,16 @@ function Orb() {
         {/* Small orbiting shapes */}
         <Icosahedron args={[0.15, 0]} position={[2, 0.5, 0]}>
           <meshStandardMaterial
-            color="#22D3EE"
-            emissive="#22D3EE"
-            emissiveIntensity={0.5}
+            color="#14B8A6"
+            emissive="#0D9488"
+            emissiveIntensity={0.4}
           />
         </Icosahedron>
         <Icosahedron args={[0.1, 0]} position={[-2, -0.3, 0.5]}>
           <meshStandardMaterial
-            color="#A78BFA"
-            emissive="#A78BFA"
-            emissiveIntensity={0.5}
+            color="#F2705B"
+            emissive="#F2705B"
+            emissiveIntensity={0.4}
           />
         </Icosahedron>
       </Float>
@@ -69,9 +69,10 @@ function Orb() {
 function Scene() {
   return (
     <>
-      <ambientLight intensity={0.4} />
-      <pointLight position={[5, 5, 5]} intensity={1} color="#4F7CFF" />
-      <pointLight position={[-5, -5, 3]} intensity={0.5} color="#22D3EE" />
+      <ambientLight intensity={0.9} />
+      <directionalLight position={[4, 5, 5]} intensity={1.4} color="#FFFFFF" />
+      <pointLight position={[5, 5, 5]} intensity={1} color="#A5B4FC" />
+      <pointLight position={[-5, -5, 3]} intensity={0.8} color="#5EEAD4" />
       <Orb />
     </>
   );

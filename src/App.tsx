@@ -6,7 +6,7 @@ import { TrustStrip } from '@/components/sections/TrustStrip';
 import { Services } from '@/components/sections/Services';
 import { Work } from '@/components/sections/Work';
 import { Process } from '@/components/sections/Process';
-import { WhyNuvential } from '@/components/sections/WhyNuvential';
+import { WhyNuential } from '@/components/sections/WhyNuential';
 import { FinalCTA } from '@/components/sections/FinalCTA';
 import { Footer } from '@/components/sections/Footer';
 
@@ -20,10 +20,10 @@ function App() {
       <main>
         <Hero />
         <TrustStrip />
-        <Services />
         <Work />
+        <Services />
         <Process />
-        <WhyNuvential />
+        <WhyNuential />
         <FinalCTA />
       </main>
       <Footer />

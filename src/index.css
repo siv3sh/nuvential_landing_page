@@ -11,25 +11,30 @@
     text-rendering: optimizeLegibility;
   }
 
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
   body {
-    background-color: #0A0E1A;
-    color: #94A3B8;
+    -webkit-tap-highlight-color: transparent;
+    background-color: #FAFAF7;
+    color: #4B5563;
     font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', 'Sora', system-ui, sans-serif;
-    color: #F8FAFC;
+    color: #0B1220;
   }
 
   ::selection {
-    background-color: rgba(79, 124, 255, 0.3);
-    color: #F8FAFC;
+    background-color: rgba(79, 70, 229, 0.18);
+    color: #0B1220;
   }
 
   *:focus-visible {
-    outline: 2px solid #4F7CFF;
+    outline: 2px solid #4F46E5;
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -37,33 +42,35 @@
 
 @layer components {
   .glass {
-    background: rgba(17, 24, 39, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(11, 18, 32, 0.07);
   }
 
   .glass-strong {
-    background: rgba(10, 14, 26, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(11, 18, 32, 0.08);
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #4F7CFF 0%, #22D3EE 100%);
+    background: linear-gradient(100deg, #4F46E5 0%, #0D9488 55%, #F2705B 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
   }
 
-  .glow-blue {
-    box-shadow: 0 0 40px rgba(79, 124, 255, 0.3), 0 0 80px rgba(79, 124, 255, 0.1);
+  .dot-grid {
+    background-image: radial-gradient(rgba(11, 18, 32, 0.09) 1px, transparent 1px);
+    background-size: 22px 22px;
   }
 
-  .glow-cyan {
-    box-shadow: 0 0 40px rgba(34, 211, 238, 0.3), 0 0 80px rgba(34, 211, 238, 0.1);
+  .fade-edges-x {
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   }
 
   .text-balance {

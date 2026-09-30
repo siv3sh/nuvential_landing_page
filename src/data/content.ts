@@ -27,10 +27,10 @@ export const HERO = {
   badge: 'Product Engineering Studio',
   headline: ['We build the', 'products you', 'imagine.'],
   subheadline:
-    'From idea to launch, Nuvential designs and engineers AI-powered software products for ambitious businesses.',
+    'From idea to launch, Nuential designs and engineers AI-powered software products for ambitious businesses.',
   primaryCta: 'Start a Project',
   secondaryCta: 'View Our Work',
-  trustLine: 'Product engineering for startups & businesses',
+  liveLabel: 'Live products we built',
 };
 
 export const TECH_MARQUEE = [
@@ -49,7 +49,7 @@ export interface ServiceItem {
   icon: LucideIcon;
   title: string;
   description: string;
-  accent: 'primary' | 'secondary' | 'violet';
+  accent: 'primary' | 'secondary' | 'violet' | 'coral' | 'amber';
   span?: string;
 }
 
@@ -78,13 +78,13 @@ export const SERVICES: ServiceItem[] = [
     icon: Palette,
     title: 'UI/UX & Motion Design',
     description: 'Interfaces that feel alive — interaction design, prototyping, and motion that builds trust.',
-    accent: 'secondary',
+    accent: 'coral',
   },
   {
     icon: Server,
     title: 'Backend & API Engineering',
     description: 'Robust, well-documented APIs and data architectures that won\'t buckle under growth.',
-    accent: 'primary',
+    accent: 'amber',
   },
   {
     icon: Rocket,
@@ -95,50 +95,92 @@ export const SERVICES: ServiceItem[] = [
   },
 ];
 
+export type ProjectKind = 'tally' | 'leadscore' | 'store';
+
+export interface ProjectMetric {
+  value: string;
+  label: string;
+}
+
 export interface ProjectItem {
+  kind: ProjectKind;
   name: string;
-  tagline: string;
+  category: string;
+  headline: string;
   description: string;
-  tags: string[];
-  link: string;
-  linkLabel: string;
-  accent: 'primary' | 'secondary' | 'violet';
-  mockup: 'finance' | 'leadscore' | 'store';
+  features: string[];
+  metrics: ProjectMetric[];
+  stack: string[];
+  url: string;
+  domain: string;
 }
 
 export const PROJECTS: ProjectItem[] = [
   {
-    name: 'Money Track',
-    tagline: 'Personal finance tracker for Indian users',
+    kind: 'tally',
+    name: 'Tally',
+    category: 'Personal finance · India',
+    headline: 'The UPI/SMS ledger that doesn’t lie.',
     description:
-      'Track income, expenses, and spending habits in one clean dashboard. Built with a focus on simplicity and actionable insights.',
-    tags: ['FastAPI', 'MongoDB', 'React'],
-    link: '#',
-    linkLabel: 'Learn more',
-    accent: 'primary',
-    mockup: 'finance',
+      'Your phone already gets “Rs 500 spent…” alerts. Tally forwards those bank SMS to a private link, parses every rupee, and turns them into a Dashboard, Spending and Transactions view — no bank password, ever.',
+    features: [
+      'Parses SMS from HDFC, ICICI, SBI, Axis, Kotak, Federal & SIB',
+      'Auto-categorised spending that remembers your corrections',
+      'Monthly debit/credit charts and top merchants',
+      'iPhone Shortcuts & Android MacroDroid capture — no net-banking login',
+    ],
+    metrics: [
+      { value: '7', label: 'Indian banks parsed' },
+      { value: '₹0', label: 'Bank passwords needed' },
+      { value: '₹299', label: 'Pro plan / month' },
+    ],
+    stack: ['React 19', 'FastAPI', 'Supabase Postgres', 'Recharts', 'Render'],
+    url: 'https://tally.nuential.com',
+    domain: 'tally.nuential.com',
   },
   {
+    kind: 'leadscore',
     name: 'LeadScore',
-    tagline: 'AI-powered lead prioritization',
+    category: 'Sales AI · Indian SMBs',
+    headline: 'Stop guessing who to call first.',
     description:
-      'Upload your leads and instantly see who is most likely to buy in the next 30 days. ML-driven scoring that sharpens your sales focus.',
-    tags: ['AI/ML', 'SaaS', 'Analytics'],
-    link: '#',
-    linkLabel: 'Learn more',
-    accent: 'secondary',
-    mockup: 'leadscore',
+      'Not another CRM. Upload the Google Sheet or CSV you already keep and get a daily call & WhatsApp list, ranked by what actually converted for your business before.',
+    features: [
+      'CSV, Excel or live Google Sheet sync — columns auto-matched',
+      'In-browser logistic-regression model scores every lead 0–100',
+      'High / Medium / Low priority with a suggested next step',
+      'One-tap WhatsApp & call from each row, plus scored CSV export',
+    ],
+    metrics: [
+      { value: '0–100', label: 'Conversion score per lead' },
+      { value: '100', label: 'Free leads to try' },
+      { value: '₹1,999', label: 'Plans from / month' },
+    ],
+    stack: ['React', 'TypeScript', 'Supabase', 'Edge Functions', 'Razorpay'],
+    url: 'https://leadscore.nuential.com',
+    domain: 'leadscore.nuential.com',
   },
   {
-    name: 'Nuvential Store',
-    tagline: 'store.nuvential.com',
+    kind: 'store',
+    name: 'Nuential Store',
+    category: 'D2C e-commerce · Home decor',
+    headline: 'A room you want to stay in.',
     description:
-      'Our digital products store — templates, UI kits, and developer tools crafted by the Nuvential team.',
-    tags: ['E-commerce', 'Digital Products'],
-    link: 'https://store.nuvential.com',
-    linkLabel: 'Visit store',
-    accent: 'violet',
-    mockup: 'store',
+      'An editorial home-decor storefront for Indian rooms — curated wall art, lighting and decor priced in INR, with pan-India delivery and a Shopify admin simple enough for a solo founder.',
+    features: [
+      'Shop by room: Wall, Lighting, Decor, Soft & floor',
+      'Multi-image galleries, variants and INR pricing from Shopify',
+      'Secure checkout with UPI & cards, 7-day easy returns',
+      'Pinterest catalog feeds for every category',
+    ],
+    metrics: [
+      { value: '21', label: 'Curated products at launch' },
+      { value: '₹97', label: 'Starting price' },
+      { value: '7-day', label: 'Easy returns' },
+    ],
+    stack: ['Next.js Commerce', 'Shopify Storefront API', 'Tailwind', 'Motion', 'Vercel'],
+    url: 'https://store.nuential.com',
+    domain: 'store.nuential.com',
   },
 ];
 
@@ -212,13 +254,13 @@ export interface CounterItem {
 }
 
 export const COUNTERS: CounterItem[] = [
-  { label: 'Products Shipped', value: 3, suffix: '' },
+  { label: 'Products live in production', value: 3, suffix: '' },
   { label: 'Years of Experience', value: 5, suffix: '+' },
   { label: 'Avg. Time to MVP', value: 8, suffix: ' wks' },
 ];
 
 export const WHY_SECTION = {
-  heading: 'Why Nuvential',
+  heading: 'Why Nuential',
   subheading: 'We earn your trust through work, not promises.',
 };
 
@@ -226,7 +268,12 @@ export const CONTACT = {
   heading: 'Have an idea?',
   subheading: "Let's build it.",
   description: 'Tell us about your project. We\'ll get back to you within one business day.',
-  email: 'hello@nuvential.com',
+  email: 'hello@nuential.com',
+  nextSteps: [
+    'A short call to understand your idea and your users',
+    'A clear scope, timeline and estimate you can review',
+    'Weekly demos from the first sprint until launch',
+  ],
   projectTypes: [
     'SaaS Platform',
     'AI / LLM Application',
@@ -239,19 +286,24 @@ export const CONTACT = {
 
 export const FOOTER = {
   description:
-    'Nuvential is a product-engineering studio building AI-powered software products for ambitious businesses.',
+    'Nuential is a product-engineering studio building AI-powered software products for ambitious businesses.',
   links: [
     { label: 'Services', href: '#services' },
     { label: 'Work', href: '#work' },
     { label: 'Process', href: '#process' },
     { label: 'Contact', href: '#contact' },
   ],
+  products: [
+    { label: 'Tally', href: 'https://tally.nuential.com' },
+    { label: 'LeadScore', href: 'https://leadscore.nuential.com' },
+    { label: 'Nuential Store', href: 'https://store.nuential.com' },
+  ],
   socials: [
     { label: 'LinkedIn', href: '#', icon: 'linkedin' },
     { label: 'GitHub', href: '#', icon: 'github' },
     { label: 'X', href: '#', icon: 'x' },
   ],
-  copyright: '© 2026 Nuvential. All rights reserved.',
+  copyright: '© 2026 Nuential. All rights reserved.',
 };
 
 export const SECTIONS = {
@@ -262,8 +314,9 @@ export const SECTIONS = {
   },
   work: {
     badge: 'Our Work',
-    heading: 'Products we\'ve built',
-    subheading: 'A selection of software products designed, engineered, and shipped by our team.',
+    heading: 'Real products. Real users. Live today.',
+    subheading:
+      'We don’t just build for clients — we design, engineer and run our own products. Here’s what’s in production right now.',
   },
   process: {
     badge: 'How we work',

@@ -1,5 +1,6 @@
 import { FOOTER } from '@/data/content';
-import { Linkedin, Github, Twitter } from 'lucide-react';
+import { Linkedin, Github, Twitter, ArrowUpRight } from 'lucide-react';
+import { Logo } from '@/components/ui/Logo';
 
 const socialIcons: Record<string, typeof Linkedin> = {
   linkedin: Linkedin,
@@ -9,25 +10,17 @@ const socialIcons: Record<string, typeof Linkedin> = {
 
 export function Footer() {
   return (
-    <footer className="border-t border-border-subtle py-12">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-          {/* Brand */}
+    <footer className="border-t border-border-subtle bg-white/70 pt-12 pb-[max(2.5rem,env(safe-area-inset-bottom))] sm:pt-14">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
-            <a href="#top" className="flex items-center gap-2 font-display text-lg font-bold text-text-heading">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-secondary opacity-50" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-secondary" />
-              </span>
-              Nuvential
+            <a href="#top" aria-label="Nuential home">
+              <Logo />
             </a>
-            <p className="mt-4 text-sm leading-relaxed text-text-body">
-              {FOOTER.description}
-            </p>
+            <p className="mt-4 text-sm leading-relaxed text-text-body">{FOOTER.description}</p>
           </div>
 
-          {/* Links */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:gap-12">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 sm:gap-14">
             <div>
               <h4 className="mb-3 font-display text-sm font-semibold text-text-heading">
                 Navigation
@@ -37,7 +30,7 @@ export function Footer() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="text-sm text-text-body transition-colors hover:text-text-heading"
+                      className="inline-block py-0.5 text-sm text-text-body transition-colors hover:text-text-heading"
                     >
                       {link.label}
                     </a>
@@ -48,9 +41,33 @@ export function Footer() {
 
             <div>
               <h4 className="mb-3 font-display text-sm font-semibold text-text-heading">
+                Our products
+              </h4>
+              <ul className="space-y-2">
+                {FOOTER.products.map((product) => (
+                  <li key={product.href}>
+                    <a
+                      href={product.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group inline-flex items-center gap-1 py-0.5 text-sm text-text-body transition-colors hover:text-text-heading"
+                    >
+                      {product.label}
+                      <ArrowUpRight
+                        size={13}
+                        className="opacity-0 transition-opacity group-hover:opacity-100"
+                      />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="mb-3 font-display text-sm font-semibold text-text-heading">
                 Connect
               </h4>
-              <div className="flex gap-3">
+              <div className="flex gap-2.5">
                 {FOOTER.socials.map((social) => {
                   const Icon = socialIcons[social.icon] ?? Linkedin;
                   return (
@@ -58,9 +75,9 @@ export function Footer() {
                       key={social.label}
                       href={social.href}
                       aria-label={social.label}
-                      className="flex h-10 w-10 items-center justify-center rounded-xl border border-border-subtle bg-white/5 text-text-body transition-all duration-300 hover:border-brand-primary/30 hover:text-brand-primary"
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-border-subtle bg-white text-text-body shadow-soft transition-all duration-300 hover:border-brand-primary/30 hover:text-brand-primary sm:h-10 sm:w-10"
                     >
-                      <Icon size={18} />
+                      <Icon size={17} />
                     </a>
                   );
                 })}
@@ -69,12 +86,9 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border-subtle pt-6 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-border-subtle pt-6 text-center sm:mt-12 sm:flex-row sm:gap-4">
           <p className="text-sm text-text-muted">{FOOTER.copyright}</p>
-          <p className="text-sm text-text-muted">
-            Built with care by Nuvential
-          </p>
+          <p className="text-sm text-text-muted">Built with care by Nuential</p>
         </div>
       </div>
     </footer>

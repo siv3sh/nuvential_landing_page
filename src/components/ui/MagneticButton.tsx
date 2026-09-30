@@ -1,5 +1,6 @@
 import { useRef, useState, type ReactNode, type MouseEvent } from 'react';
-import { motion, type Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useCanHover } from '@/hooks/useCanHover';
 
 interface MagneticButtonProps {
   children: ReactNode;
@@ -9,13 +10,6 @@ interface MagneticButtonProps {
   className?: string;
   strength?: number;
 }
-
-const EASE = [0.22, 1, 0.36, 1] as const;
-
-const variants: Variants = {
-  rest: { x: 0, y: 0 },
-  hover: { x: 0, y: 0 },
-};
 
 export function MagneticButton({
   children,
@@ -27,10 +21,11 @@ export function MagneticButton({
 }: MagneticButtonProps) {
   const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
+  const canHover = useCanHover();
 
   const handleMouseMove = (e: MouseEvent) => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || !canHover) return;
     const rect = el.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
@@ -40,24 +35,12 @@ export function MagneticButton({
   const handleMouseLeave = () => setPos({ x: 0, y: 0 });
 
   const baseClass =
-    'relative inline-flex items-center justify-center gap-2 rounded-2xl px-7 py-3.5 font-display font-medium text-base transition-colors duration-300 select-none';
+    'relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-display font-medium text-base transition-colors duration-300 select-none';
 
   const variantClass =
     variant === 'primary'
-      ? 'bg-brand-primary text-white hover:bg-brand-primary/90 glow-blue'
-      : 'glass text-text-heading hover:bg-white/5';
-
-  const content = (
-    <motion.span
-      variants={variants}
-      initial="rest"
-      animate={{ x: pos.x, y: pos.y }}
-      transition={{ type: 'spring', stiffness: 200, damping: 15, ease: EASE }}
-      className="inline-flex items-center gap-2"
-    >
-      {children}
-    </motion.span>
-  );
+      ? 'bg-text-heading text-white shadow-lifted hover:bg-brand-primary'
+      : 'border border-border-strong bg-white text-text-heading shadow-soft hover:border-text-heading/30';
 
   if (href) {
     return (
