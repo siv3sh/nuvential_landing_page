@@ -1,11 +1,7 @@
-import { useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import { PROCESS_STEPS, SECTIONS } from '@/data/content';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -17,32 +13,13 @@ const STEP_TONES = [
 ];
 
 export function Process() {
-  const lineRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced || !lineRef.current) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        lineRef.current,
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 70%',
-            end: 'bottom 80%',
-            scrub: 0.8,
-          },
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const prefersReduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start 70%', 'end 80%'],
+  });
+  const lineScale = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
 
   return (
     <section id="process" className="py-16 sm:py-24 lg:py-32">
@@ -59,10 +36,10 @@ export function Process() {
             className="absolute left-2.5 top-0 h-full w-0.5 bg-border-subtle sm:left-6 lg:left-1/2"
             aria-hidden="true"
           >
-            <div
-              ref={lineRef}
+            <motion.div
               className="h-full w-full origin-top"
               style={{
+                scaleY: prefersReduced ? 1 : lineScale,
                 background: 'linear-gradient(180deg, #4F46E5, #8B5CF6, #0D9488, #F2705B)',
               }}
             />

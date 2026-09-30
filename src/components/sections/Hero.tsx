@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { type CSSProperties, type ReactNode } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, MessageSquareText, Phone } from 'lucide-react';
 import { HERO, PROJECTS } from '@/data/content';
@@ -11,7 +11,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const container: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.3 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.05 },
   },
 };
 
@@ -20,16 +20,16 @@ const word: Variants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.8, ease: EASE },
+    transition: { duration: 0.6, ease: EASE },
   },
 };
 
 const fadeUp: Variants = {
-  hidden: { y: 24, opacity: 0 },
+  hidden: { y: 16, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.7, ease: EASE },
+    transition: { duration: 0.5, ease: EASE },
   },
 };
 
@@ -46,18 +46,17 @@ function FloatingCard({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.8, ease: EASE, delay }}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: EASE, delay }}
       className={`absolute z-10 ${className}`}
     >
-      <motion.div
-        animate={{ y: [0, -drift, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: delay * 2 }}
-        className="rounded-2xl border border-white/80 bg-white/90 p-3 shadow-float backdrop-blur-md sm:p-3.5"
+      <div
+        style={{ '--drift': `${drift}px`, animationDelay: `${delay * 2}s` } as CSSProperties}
+        className="animate-float rounded-2xl border border-white/80 bg-white/95 p-3 shadow-float will-change-transform sm:p-3.5 lg:bg-white/90 lg:backdrop-blur-md"
       >
         {children}
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
@@ -116,7 +115,7 @@ export function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            transition={{ delay: 0.8 }}
+            transition={{ delay: 0.25 }}
             className="mt-6 max-w-xl text-lg leading-relaxed text-text-body text-balance"
           >
             {HERO.subheadline}
@@ -126,7 +125,7 @@ export function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            transition={{ delay: 1 }}
+            transition={{ delay: 0.35 }}
             className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center"
           >
             <MagneticButton href="#contact" className="w-full sm:w-auto">
@@ -142,7 +141,7 @@ export function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            transition={{ delay: 1.2 }}
+            transition={{ delay: 0.45 }}
             className="mt-8 sm:mt-10"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-text-muted">
@@ -177,9 +176,9 @@ export function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: EASE, delay: 0.4 }}
+          transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
           className="relative mx-auto h-[360px] w-full max-w-md sm:h-[440px] sm:max-w-xl lg:h-[560px] lg:max-w-none"
         >
           <div
@@ -192,7 +191,7 @@ export function Hero() {
           />
           <Hero3DWrapper className="h-full w-full" />
 
-          <FloatingCard className="left-0 top-[4%] sm:top-[8%] lg:top-[10%]" delay={1.1}>
+          <FloatingCard className="left-0 top-[4%] sm:top-[8%] lg:top-[10%]" delay={0.45}>
             <div className="flex items-center gap-3">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 font-display text-sm font-bold text-product-tally">
                 ₹
@@ -208,7 +207,7 @@ export function Hero() {
             </p>
           </FloatingCard>
 
-          <FloatingCard className="right-0 top-[38%] lg:-right-2 lg:top-[42%]" delay={1.3} drift={14}>
+          <FloatingCard className="right-0 top-[38%] lg:-right-2 lg:top-[42%]" delay={0.55} drift={14}>
             <div className="flex items-center gap-3">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-50 font-display text-xs font-bold text-product-leadscore">
                 AS
@@ -234,13 +233,15 @@ export function Hero() {
             </div>
           </FloatingCard>
 
-          <FloatingCard className="bottom-[3%] left-[4%] sm:bottom-[6%] sm:left-[12%]" delay={1.5} drift={8}>
+          <FloatingCard className="bottom-[3%] left-[4%] sm:bottom-[6%] sm:left-[12%]" delay={0.65} drift={8}>
             <div className="flex items-center gap-3">
               <img
                 src="/work/store/tripod-lamp.webp"
                 alt="Tripod pleated table lamp"
+                width={48}
+                height={48}
+                decoding="async"
                 className="h-12 w-12 rounded-xl object-cover"
-                loading="lazy"
               />
               <div>
                 <p className="text-[11px] font-medium text-product-store">Lighting</p>
@@ -259,7 +260,7 @@ export function Hero() {
         aria-label="Scroll to work"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
+        transition={{ delay: 1 }}
         className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 lg:block"
       >
         <div className="flex h-10 w-6 justify-center rounded-full border-2 border-text-heading/15 p-1">

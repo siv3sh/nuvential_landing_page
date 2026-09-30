@@ -1,23 +1,23 @@
 export function GradientMesh() {
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
       <div
-        className="absolute -top-[18%] -left-[8%] h-[640px] w-[640px] rounded-full opacity-50 blur-[110px] animate-mesh-drift"
+        className="absolute -top-[22%] -left-[16%] h-[760px] w-[760px] rounded-full opacity-60 lg:animate-mesh-drift"
         style={{
-          background: 'radial-gradient(circle, #C7D2FE 0%, transparent 70%)',
+          background: 'radial-gradient(circle, #C7D2FE 0%, rgba(199,210,254,0.35) 35%, transparent 68%)',
         }}
       />
       <div
-        className="absolute top-[22%] -right-[10%] h-[560px] w-[560px] rounded-full opacity-45 blur-[110px] animate-mesh-drift"
+        className="absolute top-[18%] -right-[18%] h-[680px] w-[680px] rounded-full opacity-50 lg:animate-mesh-drift"
         style={{
-          background: 'radial-gradient(circle, #99F6E4 0%, transparent 70%)',
+          background: 'radial-gradient(circle, #99F6E4 0%, rgba(153,246,228,0.3) 35%, transparent 68%)',
           animationDelay: '5s',
         }}
       />
       <div
-        className="absolute bottom-[4%] left-[18%] h-[480px] w-[480px] rounded-full opacity-40 blur-[110px] animate-mesh-drift"
+        className="absolute bottom-0 left-[10%] h-[600px] w-[600px] rounded-full opacity-45 lg:animate-mesh-drift"
         style={{
-          background: 'radial-gradient(circle, #FED7CC 0%, transparent 70%)',
+          background: 'radial-gradient(circle, #FED7CC 0%, rgba(254,215,204,0.3) 35%, transparent 68%)',
           animationDelay: '10s',
         }}
       />

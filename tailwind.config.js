@@ -55,8 +55,13 @@ export default {
         'mesh-drift': 'mesh-drift 20s ease-in-out infinite alternate',
         'spin-slow': 'spin 20s linear infinite',
         'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
+        'float': 'float 6s ease-in-out infinite',
       },
       keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translate3d(0, 0, 0)' },
+          '50%': { transform: 'translate3d(0, calc(var(--drift, 10px) * -1), 0)' },
+        },
         marquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },

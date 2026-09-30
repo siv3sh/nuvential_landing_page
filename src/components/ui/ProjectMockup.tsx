@@ -267,8 +267,11 @@ function StoreMockup() {
           <img
             src="/work/store/banner.webp"
             alt="Bedroom styled with pastel wall art and string lights"
+            width={960}
+            height={540}
             className="absolute inset-0 h-full w-full object-cover"
             loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
           <div className="absolute bottom-3 left-4">
@@ -286,8 +289,11 @@ function StoreMockup() {
                 <img
                   src={product.image}
                   alt={product.name}
+                  width={480}
+                  height={480}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover/product:scale-105"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
               <p className="mt-1.5 text-[9.5px] font-medium uppercase tracking-wider text-product-store">
