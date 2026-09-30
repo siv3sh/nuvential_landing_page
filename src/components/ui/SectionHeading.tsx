@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { AccentText } from '@/components/ui/AccentText';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -34,9 +35,9 @@ export function SectionHeading({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
-        className="mt-5 text-2xl-display font-bold text-text-heading text-balance"
+        className="mt-5 text-2xl-display font-semibold text-text-heading text-balance"
       >
-        {heading}
+        <AccentText text={heading} accentClassName="gradient-text" />
       </motion.h2>
       {subheading && (
         <motion.p

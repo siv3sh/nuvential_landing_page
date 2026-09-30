@@ -17,12 +17,12 @@
     -webkit-tap-highlight-color: transparent;
     background-color: #FAFAF7;
     color: #4B5563;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Geist', system-ui, sans-serif;
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', 'Sora', system-ui, sans-serif;
+    font-family: 'Geist', system-ui, sans-serif;
     color: #0B1220;
   }
 
@@ -51,6 +51,16 @@
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border: 1px solid rgba(11, 18, 32, 0.08);
+  }
+
+  .accent-serif {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    font-size: 1.06em;
+    padding-right: 0.06em;
+    white-space: nowrap;
   }
 
   .gradient-text {

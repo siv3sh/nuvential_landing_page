@@ -32,12 +32,13 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Space Grotesk"', '"Sora"', 'system-ui', 'sans-serif'],
-        body: ['"Inter"', 'system-ui', 'sans-serif'],
+        display: ['Geist', 'system-ui', 'sans-serif'],
+        body: ['Geist', 'system-ui', 'sans-serif'],
+        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
       },
       fontSize: {
-        hero: ['clamp(2.75rem, 6.2vw, 5.25rem)', { lineHeight: '1.02', letterSpacing: '-0.035em' }],
-        '2xl-display': ['clamp(2rem, 4vw, 3.25rem)', { lineHeight: '1.08', letterSpacing: '-0.03em' }],
+        hero: ['clamp(2.75rem, 6.2vw, 5.25rem)', { lineHeight: '1.02', letterSpacing: '-0.045em' }],
+        '2xl-display': ['clamp(2rem, 4vw, 3.25rem)', { lineHeight: '1.08', letterSpacing: '-0.04em' }],
       },
       borderRadius: {
         '2xl': '1rem',

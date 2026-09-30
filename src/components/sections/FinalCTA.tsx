@@ -79,9 +79,9 @@ export function FinalCTA() {
           transition={{ duration: 0.7, ease: EASE }}
           className="px-1 sm:px-0 lg:sticky lg:top-32"
         >
-          <h2 className="text-2xl-display font-bold text-text-heading text-balance">
+          <h2 className="text-2xl-display font-semibold text-text-heading text-balance">
             {CONTACT.heading}{' '}
-            <span className="gradient-text">{CONTACT.subheading}</span>
+            <span className="accent-serif gradient-text">{CONTACT.subheading}</span>
           </h2>
           <p className="mt-4 text-lg text-text-body text-balance">
             {CONTACT.description}

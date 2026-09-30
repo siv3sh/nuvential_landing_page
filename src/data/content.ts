@@ -120,7 +120,7 @@ export const PROJECTS: ProjectItem[] = [
     kind: 'tally',
     name: 'Tally',
     category: 'Personal finance · India',
-    headline: 'The UPI/SMS ledger that doesn’t lie.',
+    headline: 'The UPI/SMS ledger that *doesn’t lie.*',
     description:
       'Your phone already gets “Rs 500 spent…” alerts. Tally forwards those bank SMS to a private link, parses every rupee, and turns them into a Dashboard, Spending and Transactions view — no bank password, ever.',
     features: [
@@ -142,7 +142,7 @@ export const PROJECTS: ProjectItem[] = [
     kind: 'leadscore',
     name: 'LeadScore',
     category: 'Sales AI · Indian SMBs',
-    headline: 'Stop guessing who to call first.',
+    headline: 'Stop guessing who to *call first.*',
     description:
       'Not another CRM. Upload the Google Sheet or CSV you already keep and get a daily call & WhatsApp list, ranked by what actually converted for your business before.',
     features: [
@@ -164,7 +164,7 @@ export const PROJECTS: ProjectItem[] = [
     kind: 'store',
     name: 'Nuential Store',
     category: 'D2C e-commerce · Home decor',
-    headline: 'A room you want to stay in.',
+    headline: 'A room you *want to stay in.*',
     description:
       'An editorial home-decor storefront for Indian rooms — curated wall art, lighting and decor priced in INR, with pan-India delivery and a Shopify admin simple enough for a solo founder.',
     features: [
@@ -260,7 +260,7 @@ export const COUNTERS: CounterItem[] = [
 ];
 
 export const WHY_SECTION = {
-  heading: 'Why Nuential',
+  heading: 'Why *Nuential*',
   subheading: 'We earn your trust through work, not promises.',
 };
 
@@ -309,18 +309,18 @@ export const FOOTER = {
 export const SECTIONS = {
   services: {
     badge: 'What we do',
-    heading: 'Services built for product-minded teams',
+    heading: 'Services built for *product-minded* teams',
     subheading: 'Everything you need to go from a blank page to a launched product.',
   },
   work: {
     badge: 'Our Work',
-    heading: 'Real products. Real users. Live today.',
+    heading: 'Real products. Real users. *Live today.*',
     subheading:
       'We don’t just build for clients — we design, engineer and run our own products. Here’s what’s in production right now.',
   },
   process: {
     badge: 'How we work',
-    heading: 'A process you can follow',
+    heading: 'A process you *can follow*',
     subheading: 'Four phases, each with clear deliverables and visible progress.',
   },
 } as const;

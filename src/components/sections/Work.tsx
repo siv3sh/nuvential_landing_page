@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, Check } from 'lucide-react';
 import { PROJECTS, SECTIONS, type ProjectItem } from '@/data/content';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { AccentText } from '@/components/ui/AccentText';
 import { ProjectMockup } from '@/components/ui/ProjectMockup';
 import { PRODUCT_THEME } from '@/components/ui/productTheme';
 
@@ -57,8 +58,8 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
             </span>
           </div>
 
-          <h3 className="mt-5 text-[1.75rem] font-bold leading-tight tracking-tight text-text-heading sm:mt-6 sm:text-3xl lg:text-4xl">
-            {project.headline}
+          <h3 className="mt-5 text-[1.75rem] font-semibold leading-tight tracking-[-0.035em] text-text-heading text-balance sm:mt-6 sm:text-3xl lg:text-4xl">
+            <AccentText text={project.headline} accentClassName={theme.text} />
           </h3>
           <p className="mt-3 text-[15px] leading-relaxed text-text-body sm:mt-4 sm:text-base lg:text-lg">
             {project.description}

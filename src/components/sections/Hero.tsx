@@ -96,13 +96,13 @@ export function Hero() {
             variants={container}
             initial="hidden"
             animate="visible"
-            className="mt-7 text-hero font-bold text-text-heading"
+            className="mt-7 text-hero font-semibold text-text-heading"
           >
             {HERO.headline.map((line, lineIdx) => (
-              <span key={lineIdx} className="block overflow-hidden pb-1">
+              <span key={lineIdx} className="block overflow-hidden pb-2 pr-2">
                 <motion.span variants={word} className="inline-block">
                   {lineIdx === HERO.headline.length - 1 ? (
-                    <span className="gradient-text">{line}</span>
+                    <span className="accent-serif gradient-text">{line}</span>
                   ) : (
                     line
                   )}
