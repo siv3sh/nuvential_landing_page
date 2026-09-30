@@ -22,7 +22,7 @@ export function Process() {
   const lineScale = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
 
   return (
-    <section id="process" className="py-16 sm:py-24 lg:py-32">
+    <section id="process" className="overflow-x-clip py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <SectionHeading
           badge={SECTIONS.process.badge}

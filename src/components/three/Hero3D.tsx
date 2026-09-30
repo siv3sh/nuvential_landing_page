@@ -3,7 +3,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Icosahedron, MeshDistortMaterial, Float, Wireframe } from '@react-three/drei';
 import type { Group } from 'three';
 
-function Orb() {
+function Orb({ compact }: { compact: boolean }) {
   const groupRef = useRef<Group>(null);
   const { viewport } = useThree();
 
@@ -22,7 +22,7 @@ function Orb() {
     <group ref={groupRef}>
       <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.5}>
         {/* Inner glowing core */}
-        <Icosahedron args={[1.2, 4]}>
+        <Icosahedron args={[1.2, compact ? 3 : 4]}>
           <MeshDistortMaterial
             color="#6366F1"
             emissive="#4F46E5"
@@ -66,28 +66,34 @@ function Orb() {
   );
 }
 
-function Scene() {
+function Scene({ compact }: { compact: boolean }) {
   return (
     <>
       <ambientLight intensity={0.9} />
       <directionalLight position={[4, 5, 5]} intensity={1.4} color="#FFFFFF" />
       <pointLight position={[5, 5, 5]} intensity={1} color="#A5B4FC" />
       <pointLight position={[-5, -5, 3]} intensity={0.8} color="#5EEAD4" />
-      <Orb />
+      <Orb compact={compact} />
     </>
   );
 }
 
-export function Hero3D() {
+interface Hero3DProps {
+  compact?: boolean;
+  active?: boolean;
+}
+
+export function Hero3D({ compact = false, active = true }: Hero3DProps) {
   return (
     <Canvas
-      camera={{ position: [0, 0, 5], fov: 45 }}
-      dpr={[1, 2]}
-      gl={{ antialias: true, alpha: true }}
+      camera={{ position: [0, 0, compact ? 5.2 : 5], fov: 45 }}
+      dpr={compact ? [1, 1.5] : [1, 2]}
+      frameloop={active ? 'always' : 'never'}
+      gl={{ antialias: true, alpha: true, powerPreference: compact ? 'low-power' : 'default' }}
       style={{ width: '100%', height: '100%' }}
     >
       <Suspense fallback={null}>
-        <Scene />
+        <Scene compact={compact} />
       </Suspense>
     </Canvas>
   );

@@ -36,11 +36,13 @@ const fadeUp: Variants = {
 function FloatingCard({
   children,
   className,
+  originClassName,
   delay,
   drift = 10,
 }: {
   children: ReactNode;
   className: string;
+  originClassName: string;
   delay: number;
   drift?: number;
 }) {
@@ -51,11 +53,13 @@ function FloatingCard({
       transition={{ duration: 0.6, ease: EASE, delay }}
       className={`absolute z-10 ${className}`}
     >
-      <div
-        style={{ '--drift': `${drift}px`, animationDelay: `${delay * 2}s` } as CSSProperties}
-        className="animate-float rounded-2xl border border-white/80 bg-white/95 p-3 shadow-float will-change-transform sm:p-3.5 lg:bg-white/90 lg:backdrop-blur-md"
-      >
-        {children}
+      <div className={`max-sm:scale-[0.82] ${originClassName}`}>
+        <div
+          style={{ '--drift': `${drift}px`, animationDelay: `${delay * 2}s` } as CSSProperties}
+          className="animate-float rounded-2xl border border-white/80 bg-white/95 p-3 shadow-float will-change-transform sm:p-3.5 lg:bg-white/90 lg:backdrop-blur-md"
+        >
+          {children}
+        </div>
       </div>
     </motion.div>
   );
@@ -179,7 +183,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
-          className="relative mx-auto h-[360px] w-full max-w-md sm:h-[440px] sm:max-w-xl lg:h-[560px] lg:max-w-none"
+          className="relative mx-auto h-[420px] w-full max-w-md sm:h-[460px] sm:max-w-xl lg:h-[560px] lg:max-w-none"
         >
           <div
             className="absolute inset-[12%] -z-10 rounded-full opacity-70 blur-3xl"
@@ -191,7 +195,7 @@ export function Hero() {
           />
           <Hero3DWrapper className="h-full w-full" />
 
-          <FloatingCard className="left-0 top-[4%] sm:top-[8%] lg:top-[10%]" delay={0.45}>
+          <FloatingCard className="left-0 top-0 sm:top-[8%] lg:top-[10%]" originClassName="origin-top-left" delay={0.45}>
             <div className="flex items-center gap-3">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 font-display text-sm font-bold text-product-tally">
                 ₹
@@ -207,7 +211,7 @@ export function Hero() {
             </p>
           </FloatingCard>
 
-          <FloatingCard className="right-0 top-[38%] lg:-right-2 lg:top-[42%]" delay={0.55} drift={14}>
+          <FloatingCard className="right-0 top-[46%] sm:top-[38%] lg:-right-2 lg:top-[42%]" originClassName="origin-right" delay={0.55} drift={14}>
             <div className="flex items-center gap-3">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-50 font-display text-xs font-bold text-product-leadscore">
                 AS
@@ -223,7 +227,7 @@ export function Hero() {
                 </span>
               </div>
             </div>
-            <div className="mt-2.5 flex items-center gap-1.5">
+            <div className="mt-2.5 hidden items-center gap-1.5 sm:flex">
               <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-medium text-emerald-700">
                 <MessageSquareText size={11} /> WhatsApp
               </span>
@@ -233,7 +237,7 @@ export function Hero() {
             </div>
           </FloatingCard>
 
-          <FloatingCard className="bottom-[3%] left-[4%] sm:bottom-[6%] sm:left-[12%]" delay={0.65} drift={8}>
+          <FloatingCard className="bottom-0 left-0 sm:bottom-[6%] sm:left-[12%]" originClassName="origin-bottom-left" delay={0.65} drift={8}>
             <div className="flex items-center gap-3">
               <img
                 src="/work/store/tripod-lamp.webp"
