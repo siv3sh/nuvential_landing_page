@@ -81,14 +81,16 @@ function Scene({ compact }: { compact: boolean }) {
 interface Hero3DProps {
   compact?: boolean;
   active?: boolean;
+  /** Render a single static frame (reduced motion). */
+  still?: boolean;
 }
 
-export function Hero3D({ compact = false, active = true }: Hero3DProps) {
+export function Hero3D({ compact = false, active = true, still = false }: Hero3DProps) {
   return (
     <Canvas
       camera={{ position: [0, 0, compact ? 5.2 : 5], fov: 45 }}
       dpr={compact ? [1, 1.5] : [1, 2]}
-      frameloop={active ? 'always' : 'never'}
+      frameloop={still ? 'demand' : active ? 'always' : 'never'}
       gl={{ antialias: true, alpha: true, powerPreference: compact ? 'low-power' : 'default' }}
       style={{ width: '100%', height: '100%' }}
     >
