@@ -12,15 +12,82 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" />
     <link rel="preload" as="image" href="/work/store/tripod-lamp.webp" type="image/webp" />
-    <title>Nuential — We Build the Products You Imagine</title>
-    <meta name="description" content="Nuential is a product-engineering studio. We partner with startups and businesses to design and build custom software products — SaaS, AI-powered tools, web and mobile apps — from idea to launch." />
-    <meta name="keywords" content="product engineering, software studio, SaaS development, AI applications, web development, mobile apps, MVP, startup software" />
+    <title>Nuential | Product Engineering Studio for SaaS, AI &amp; Web Apps</title>
+    <meta name="description" content="India-based product-engineering studio building SaaS, AI tools and web &amp; mobile apps from idea to launch. Makers of Tally, LeadScore and Nuential Store." />
+    <meta name="keywords" content="Nuential, product engineering studio, SaaS development India, AI app development, web app development, mobile app development, MVP development, Tally, LeadScore, Nuential Store" />
     <meta name="author" content="Nuential" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://nuential.com/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://nuential.com/#organization",
+            "name": "Nuential",
+            "url": "https://nuential.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://nuential.com/icon-512.png",
+              "width": 512,
+              "height": 512
+            },
+            "image": "https://nuential.com/og-image.jpg",
+            "description": "Product-engineering studio that designs and builds SaaS, AI-powered tools, and web and mobile apps from idea to launch.",
+            "email": "hello@nuential.com",
+            "areaServed": "IN",
+            "knowsAbout": ["Product engineering", "SaaS development", "AI applications", "Web development", "Mobile app development", "UI/UX design"],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "hello@nuential.com",
+              "availableLanguage": ["English"]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://nuential.com/#website",
+            "url": "https://nuential.com/",
+            "name": "Nuential",
+            "publisher": { "@id": "https://nuential.com/#organization" },
+            "inLanguage": "en-IN"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Tally",
+            "url": "https://tally.nuential.com",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web",
+            "description": "UPI and bank-SMS expense ledger that turns bank alerts into a spending dashboard without bank passwords.",
+            "offers": { "@type": "Offer", "price": "299", "priceCurrency": "INR" },
+            "publisher": { "@id": "https://nuential.com/#organization" }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "LeadScore",
+            "url": "https://leadscore.nuential.com",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "description": "AI lead scoring that ranks leads 0–100 so sales teams know who to call first.",
+            "offers": { "@type": "Offer", "price": "1999", "priceCurrency": "INR" },
+            "publisher": { "@id": "https://nuential.com/#organization" }
+          },
+          {
+            "@type": "OnlineStore",
+            "name": "Nuential Store",
+            "url": "https://store.nuential.com",
+            "description": "Editorial home-decor store for Indian rooms with wall art, lighting and decor.",
+            "parentOrganization": { "@id": "https://nuential.com/#organization" }
+          }
+        ]
+      }
+    </script>
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://nuential.com/" />
-    <meta property="og:title" content="Nuential — We Build the Products You Imagine" />
+    <meta property="og:title" content="Nuential | Product Engineering Studio for SaaS, AI &amp; Web Apps" />
     <meta property="og:description" content="From idea to launch, Nuential designs and engineers AI-powered software products for ambitious businesses." />
     <meta property="og:site_name" content="Nuential" />
     <meta property="og:locale" content="en_IN" />
@@ -32,13 +99,13 @@
     <meta property="og:image:alt" content="Nuential — We build the products you imagine. Tally, LeadScore and Nuential Store are live." />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Nuential — We Build the Products You Imagine" />
+    <meta name="twitter:title" content="Nuential | Product Engineering Studio for SaaS, AI &amp; Web Apps" />
     <meta name="twitter:description" content="From idea to launch, Nuential designs and engineers AI-powered software products for ambitious businesses." />
     <meta name="twitter:image" content="https://nuential.com/og-image.jpg" />
     <meta name="twitter:image:alt" content="Nuential — We build the products you imagine." />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -111,6 +111,7 @@ export function Hero() {
                     line
                   )}
                 </motion.span>
+                {lineIdx < HERO.headline.length - 1 && ' '}
               </span>
             ))}
           </motion.h1>
